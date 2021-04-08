@@ -12,7 +12,7 @@ class App {
   }
 
   public listen() {
-    this.app.listen(PORT);
+    this.app.listen(PORT, () => console.log('Its running...'));
   }
 
   private setMiddlewares(middlewares: {
