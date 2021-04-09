@@ -11,7 +11,6 @@ const PORT = 3000;
 const app = new App({
   port: PORT,
   middlewares: [
-    morgan('development'),
     express.urlencoded({extended: false}),
     express.json(),
     logMiddleware,
