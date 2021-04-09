@@ -2,7 +2,7 @@ import * as bodyParser from 'body-parser';
 import express from 'express';
 import morgan from 'morgan';
 
-import App from './app';
+import App from './app.config';
 import HomeController from './controllers/home.controller';
 import logMiddleware from './middlewares/log.middleware';
 
