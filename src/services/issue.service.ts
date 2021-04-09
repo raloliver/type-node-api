@@ -11,6 +11,18 @@ export default class IssueService {
     // Aqui referênciamos a interface como padrão de entrada dos dados
     const iIssue = req.body as IIssue;
     const issue = await IssueModel.create(iIssue);
+    return res.json({msg: `Issue ${issue?.title} criada com sucesso!`});
+  }
+
+  public async findOne(req: Request, res: Response) {
+    const issue: IIssue | null = await IssueModel.findById(req.params.id);
     return res.json({issue});
+  }
+
+  public async removeOne(req: Request, res: Response) {
+    const issue: IIssue | null = await IssueModel.findByIdAndDelete(
+      req.params.id
+    );
+    return res.json({msg: `Issue ${issue?.title} removida com sucesso!`});
   }
 }

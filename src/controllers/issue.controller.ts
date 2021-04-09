@@ -13,9 +13,7 @@ export default class IssueController {
   public setRoutes() {
     this.router.get(`${this.path}`, this.issueService.findAll);
     this.router.post(`${this.path}`, this.issueService.create);
+    this.router.get(`${this.path}:id`, this.issueService.findOne);
+    this.router.delete(`${this.path}:id`, this.issueService.removeOne);
   }
-
-  helloWord = (req: Request, res: Response) => {
-    return res.json({msg: 'Hello Node + Type'});
-  };
 }
