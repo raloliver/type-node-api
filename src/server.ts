@@ -3,6 +3,7 @@ import express from 'express';
 import morgan from 'morgan';
 
 import App from './app';
+import HomeController from './controllers/HomeController';
 
 const PORT = 3000;
 
@@ -13,7 +14,7 @@ const app = new App({
     express.urlencoded({extended: false}),
     express.json(),
   ],
-  controllers: [],
+  controllers: [new HomeController()],
 });
 
 app.listen();
