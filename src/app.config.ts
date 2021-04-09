@@ -1,18 +1,20 @@
 import express, {Application} from 'express';
-
-const PORT = 3000;
+import mongoose from 'mongoose';
 
 class App {
   public app: Application;
+  public port: number;
 
   constructor(appConfig: {port: number; middlewares: any; controllers: any}) {
     this.app = express();
+    this.port = appConfig.port;
+    this.setMongooseConnection();
     this.setMiddlewares(appConfig.middlewares);
     this.setControllers(appConfig.controllers);
   }
 
   public listen() {
-    this.app.listen(PORT, () => console.log('Its running...'));
+    this.app.listen(this.port, () => console.log('Its running...'));
   }
 
   private setMiddlewares(middlewares: {
@@ -28,6 +30,13 @@ class App {
   }) {
     controllers.forEach((controller) => {
       this.app.use('/', controller.router);
+    });
+  }
+
+  private setMongooseConnection() {
+    mongoose.connect('mongodb://localhost:27017/type-node-crud', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
   }
 }
